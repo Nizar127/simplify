@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "548630106365",
+    "firebase_url": "https://simplify-64d6c-default-rtdb.firebaseio.com",
+    "project_id": "simplify-64d6c",
+    "storage_bucket": "simplify-64d6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548630106365:android:74bb06789dce0229832e94",
+        "android_client_info": {
+          "package_name": "com.ainshafiqah.mysimplify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548630106365-64heglmea1a8u1e6uccjgt299ada69v3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCwAzmq2smx8TzxB_2JYDfEg4PbEtE5Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548630106365-64heglmea1a8u1e6uccjgt299ada69v3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548630106365:android:f78b1a871e42b62a832e94",
+        "android_client_info": {
+          "package_name": "com.ainshafiqah.thesimplify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548630106365-64heglmea1a8u1e6uccjgt299ada69v3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCwAzmq2smx8TzxB_2JYDfEg4PbEtE5Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548630106365-64heglmea1a8u1e6uccjgt299ada69v3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548630106365:android:50b23753ed681bbe832e94",
+        "android_client_info": {
+          "package_name": "com.example.simplify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548630106365-64heglmea1a8u1e6uccjgt299ada69v3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCwAzmq2smx8TzxB_2JYDfEg4PbEtE5Ss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548630106365-64heglmea1a8u1e6uccjgt299ada69v3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

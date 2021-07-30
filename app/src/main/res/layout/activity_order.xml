@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#372A28"
+    tools:context=".OrderActivity">
+
+
+    <ImageView
+        android:id="@+id/imgOrder"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/orderText"
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/ic_baseline_post_add_24"
+        tools:ignore="VectorDrawableCompat"/>
+
+
+
+    <TextView
+        android:id="@+id/orderText"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/allerta"
+        android:gravity="center_horizontal"
+        android:text="ORDERS"
+        android:textColor="#FAFAFA"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+
+    <LinearLayout
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imgOrder"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewSystem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+    </LinearLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-4dp"
+        android:background="#FFEB3B"
+        app:itemIconTint="#423A30"
+        app:menu="@menu/bottomnav"></com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+</RelativeLayout>

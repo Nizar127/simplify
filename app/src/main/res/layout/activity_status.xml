@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#372A28"
+    tools:context=".StatusActivity">
+
+    <TextView
+        android:id="@+id/orderCompleteText"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/allerta"
+        android:gravity="center_horizontal"
+        android:text="Check Orders"
+        android:textColor="#FAFAFA"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/trackID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:backgroundTint="#002C78"
+        android:text="Track Order"
+        android:layout_below="@+id/orderCompleteText"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/recyclerStatusOrder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/trackID"
+        android:padding="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewStatusorder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>
