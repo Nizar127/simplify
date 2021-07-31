@@ -55,23 +55,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="status"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/statusDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="to pack"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+               <Button
+                   android:id="@+id/statusBtn"
+                   android:layout_width="match_parent"
+                   android:layout_height="50dp"
+                   android:text="UPDATE"
+                   android:layout_marginTop="20dp"
+                   android:backgroundTint="@color/link"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   android:fontFamily="@font/allerta"/>
 
 
             </LinearLayout>
