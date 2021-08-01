@@ -51,7 +51,7 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
                 Toast.makeText(v.getContext(), "The dialog start", Toast.LENGTH_SHORT).show();
                 //showButton();
                 final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(v.getContext());
-                bottomSheetDialog.setContentView(R.layout.bottom_sheet_pack);
+                bottomSheetDialog.setContentView(R.layout.bottom_sheet_shipping);
 
                 LinearLayout delivering     = bottomSheetDialog.findViewById(R.id.deliverItemDialog);
                 LinearLayout closeDialog  = bottomSheetDialog.findViewById(R.id.closeDialog);
@@ -67,7 +67,7 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",deliveredOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).setValue(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                         dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
