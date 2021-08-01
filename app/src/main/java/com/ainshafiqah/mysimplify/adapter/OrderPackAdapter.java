@@ -45,6 +45,7 @@ public class OrderPackAdapter extends FirebaseRecyclerAdapter<OrderData, OrderPa
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
+        holder.status.setText(model.getStatus());
         holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +69,7 @@ public class OrderPackAdapter extends FirebaseRecyclerAdapter<OrderData, OrderPa
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",deliveredOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).setValue(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -89,7 +90,7 @@ public class OrderPackAdapter extends FirebaseRecyclerAdapter<OrderData, OrderPa
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",shipOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).setValue(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
@@ -144,7 +145,7 @@ public class OrderPackAdapter extends FirebaseRecyclerAdapter<OrderData, OrderPa
 
     class OrderPackViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, address, trackingNum;
+        TextView name, address, trackingNum, status;
         Button statusUpdateBtn;
 
         public OrderPackViewHolder(@NonNull  View itemView) {
@@ -154,6 +155,7 @@ public class OrderPackAdapter extends FirebaseRecyclerAdapter<OrderData, OrderPa
             address         = itemView.findViewById(R.id.addresspackorder);
             trackingNum     = itemView.findViewById(R.id.trackingNumpackorder);
             statusUpdateBtn = itemView.findViewById(R.id.statusBtnPacking);
+            status          = itemView.findViewById(R.id.statusOrderDetailPack);
         }
     }
 }

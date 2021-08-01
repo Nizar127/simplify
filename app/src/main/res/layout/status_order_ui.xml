@@ -60,8 +60,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="status"
+                    android:text="Status"
                     android:textSize="18sp"
+                    android:fontFamily="@font/allerta"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <TextView

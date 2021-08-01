@@ -17,23 +17,23 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapter.OrderViewHolder> {
+public class OrderAdapterSystem extends FirebaseRecyclerAdapter<OrderData,OrderAdapterSystem.OrderSystemViewHolder> {
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public OrderAdapter(@NonNull FirebaseRecyclerOptions<OrderData> options) {
+    public OrderAdapterSystem(@NonNull FirebaseRecyclerOptions<OrderData> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull  OrderAdapter.OrderViewHolder holder, int position, @NonNull OrderData model) {
+    protected void onBindViewHolder(@NonNull  OrderAdapterSystem.OrderSystemViewHolder holder, int position, @NonNull OrderData model) {
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
-/*        holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
+        holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(v.getContext(), "The dialog start", Toast.LENGTH_SHORT).show();
@@ -90,23 +90,22 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                     }
                 });
             }
-        });*/
+        });
     }
 
     @NonNull
-
     @Override
-    public OrderAdapter.OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrderAdapterSystem.OrderSystemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_ui, parent, false);
-        return new OrderViewHolder(view);
+        return new OrderSystemViewHolder(view);
     }
 
-    class OrderViewHolder extends RecyclerView.ViewHolder{
+    class OrderSystemViewHolder extends RecyclerView.ViewHolder{
 
         TextView name, address, trackingNum;
         Button statusUpdateBtn;
 
-        public OrderViewHolder(@NonNull View itemView) {
+        public OrderSystemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name            = itemView.findViewById(R.id.custName);
