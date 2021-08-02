@@ -72,8 +72,8 @@ public class OrderDeliverAdapter extends FirebaseRecyclerAdapter<OrderData, Orde
                         HashMap<String, Object> orderMap = new HashMap<>();
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",completed);
-                        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order").child(UserID).child("Order_Completed");
-                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
+                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
