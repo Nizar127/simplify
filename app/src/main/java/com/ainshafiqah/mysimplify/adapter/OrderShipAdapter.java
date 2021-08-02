@@ -45,6 +45,7 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
+        holder.status.setText(model.getStatus());
         holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +68,11 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",deliveredOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                         dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                        
+
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -122,7 +127,7 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
 
     class OrderShipViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, address, trackingNum;
+        TextView name, address, trackingNum, status;
         Button statusUpdateBtn;
 
         public OrderShipViewHolder(@NonNull View itemView) {
@@ -132,6 +137,7 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
             address         = itemView.findViewById(R.id.addressshiporder);
             trackingNum     = itemView.findViewById(R.id.trackingNumshiporder);
             statusUpdateBtn = itemView.findViewById(R.id.statusBtnShip);
+            status          = itemView.findViewById(R.id.statusOrderDetailShip);
         }
     }
 }

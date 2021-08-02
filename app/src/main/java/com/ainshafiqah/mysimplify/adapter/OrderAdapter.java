@@ -1,6 +1,5 @@
 package com.ainshafiqah.mysimplify.adapter;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
@@ -16,30 +15,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ainshafiqah.mysimplify.EditProfileActivity;
+import com.ainshafiqah.mysimplify.CompletedOrderActivity;
 import com.ainshafiqah.mysimplify.OrderActivity;
 import com.ainshafiqah.mysimplify.OrderDeliverActivity;
 import com.ainshafiqah.mysimplify.OrderPackActivity;
 import com.ainshafiqah.mysimplify.OrderShipActivity;
 import com.ainshafiqah.mysimplify.R;
-import com.ainshafiqah.mysimplify.RegisterActivity;
 import com.ainshafiqah.mysimplify.model.OrderData;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapter.OrderViewHolder> implements View.OnClickListener{
-    FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    String TAG = "";
-    String userID = fAuth.getCurrentUser().getUid();
-    Context mContext;
+public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapter.OrderViewHolder> {
+   String TAG = "";
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
@@ -51,12 +45,10 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull OrderAdapter.OrderViewHolder holder, int position, @NonNull OrderData model) {
-
+    protected void onBindViewHolder(@NonNull  OrderAdapter.OrderViewHolder holder, int position, @NonNull OrderData model) {
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
-
         holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,20 +61,27 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                 LinearLayout packing      = bottomSheetDialog.findViewById(R.id.packingItemDialog);
                 LinearLayout completed    = bottomSheetDialog.findViewById(R.id.completeItemDialog);
                 LinearLayout delivering   = bottomSheetDialog.findViewById(R.id.deliverItemDialog);
+                LinearLayout completed    = bottomSheetDialog.findViewById(R.id.completeItemDialog);
                 LinearLayout closeDialog  = bottomSheetDialog.findViewById(R.id.closeDialog);
                 LinearLayout deleteDialog = bottomSheetDialog.findViewById(R.id.deleteItemDialog);
 
-            completed.setOnClickListener(new View.OnClickListener() {
+
+                completed.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String key = getRef(position).getKey();
-                        Log.d(TAG, "key: " + key);
+                        Log.d(TAG, "completedKey: "+key);
+
                         Object completed = "Complete";
                         HashMap<String, Object> orderMap = new HashMap<>();
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",completed);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                       
+
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -93,17 +92,17 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                         });
                     }
                 });
-                
+
                 shipping.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String key = getRef(position).getKey();
                         Object shipOut = "shipping";
                         HashMap<String, Object> orderMap = new HashMap<>();
-                                    //orderMap.put("orderID",userID);
+                        //orderMap.put("orderID",userID);
                         orderMap.put("order_status",shipOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {      
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
@@ -114,7 +113,6 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                         });
                     }
                 });
-                //for shipping
 
                 packing.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -146,8 +144,11 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                         HashMap<String, Object> orderMap = new HashMap<>();
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",deliveredOut);
-                        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order").child(userID).child("order_status");
-                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
+                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -159,7 +160,14 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                     }
                 });
 
-                //delete
+
+                closeDialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+
                 deleteDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -178,19 +186,9 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                     }
                 });
 
-                closeDialog.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        bottomSheetDialog.dismiss();
-                    }
-                });
-
                 bottomSheetDialog.show();
-
             }
         });
-
     }
 
     @NonNull
@@ -199,11 +197,6 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
     public OrderAdapter.OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_ui, parent, false);
         return new OrderViewHolder(view);
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     class OrderViewHolder extends RecyclerView.ViewHolder{

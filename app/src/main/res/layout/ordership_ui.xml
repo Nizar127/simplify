@@ -17,11 +17,33 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/allerta"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/custNameshipsorder"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:text="custName"
                 android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/allerta"
+                android:text="Address"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/addressshiporder"
@@ -30,6 +52,19 @@
                 android:text="Address"
                 android:layout_marginTop="5dp"
                 android:textSize="15sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/allerta"
+                android:text="Tracking Number"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/trackingNumshiporder"
@@ -55,12 +90,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Status"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/allerta"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/statusOrderDetailShip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Shipping"
+                    android:textSize="18sp"
+                    android:textColor="@color/link"
+                    android:textStyle="bold" />
+
                 <Button
                     android:id="@+id/statusBtnShip"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:text="UPDATE"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="2dp"
                     android:backgroundTint="@color/link"
                     android:textColor="@color/white"
                     android:textStyle="bold"

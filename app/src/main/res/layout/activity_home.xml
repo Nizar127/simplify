@@ -25,6 +25,14 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/imgOrder"
+            android:layout_width="48dp"
+            android:layout_height="45dp"
+            android:layout_margin="20dp"
+            app:srcCompat="@drawable/ic_baseline_post_add_24"
+            tools:ignore="VectorDrawableCompat"/>
+
         <LinearLayout
             android:id="@+id/linearLAYOVER"
             android:layout_width="match_parent"
@@ -61,7 +69,10 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/circularcenter"/>
+                    android:textSize="30sp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/black"
+                    />
 
 
             </LinearLayout>
@@ -95,7 +106,9 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/circularcenter"/>
+                    android:textSize="30sp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/black"/>
 
 
             </LinearLayout>
@@ -129,7 +142,9 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:background="@drawable/circularcenter"/>
+                    android:textSize="30sp"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/black"/>
 
 
             </LinearLayout>

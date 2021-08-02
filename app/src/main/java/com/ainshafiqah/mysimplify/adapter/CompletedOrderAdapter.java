@@ -29,6 +29,7 @@ public class CompletedOrderAdapter extends FirebaseRecyclerAdapter<OrderData, Co
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
+        holder.status.setText(model.getStatus());
     }
 
     @NonNull
@@ -41,7 +42,7 @@ public class CompletedOrderAdapter extends FirebaseRecyclerAdapter<OrderData, Co
 
     class CompletedViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, address, trackingNum;
+        TextView name, address, trackingNum, status;
 
         public CompletedViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -49,6 +50,7 @@ public class CompletedOrderAdapter extends FirebaseRecyclerAdapter<OrderData, Co
             name = itemView.findViewById(R.id.custNameComplete);
             address = itemView.findViewById(R.id.addressComplete);
             trackingNum = itemView.findViewById(R.id.trackingNumComplete);
+            status      =itemView.findViewById(R.id.statusDetail);
         }
     }
 }

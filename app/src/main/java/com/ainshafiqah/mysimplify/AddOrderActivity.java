@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import static android.content.ContentValues.TAG;
+
 public class AddOrderActivity extends AppCompatActivity {
 
     TextView getCat;
@@ -29,7 +32,7 @@ public class AddOrderActivity extends AppCompatActivity {
     String userID, mname, mphone, maddress, mcustordate, mcustship, mcusttrack;
     Button addOrderBtn;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    DatabaseReference orderRef;
+    DatabaseReference orderRef, addDataRef;
     String saveCurrentDate, saveCurrentTime, productRandomKey;
 
     @Override
@@ -38,6 +41,7 @@ public class AddOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_order);
 
         orderRef = FirebaseDatabase.getInstance().getReference("Order");
+        addDataRef = FirebaseDatabase.getInstance().getReference("Order");
         addOrderBtn = findViewById(R.id.addord);
 
         custname = findViewById(R.id.cust_name);
@@ -113,7 +117,10 @@ public class AddOrderActivity extends AppCompatActivity {
         productMap.put("shipmentDate", mcustship);
         productMap.put("trackingNum", mcusttrack);
 
-        orderRef.child(userID).updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        String addData = addDataRef.push().getKey();
+        Log.d(TAG, "SaveOrderToDB: "+addData);
+
+        orderRef.child(addData).updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

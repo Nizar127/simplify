@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.ainshafiqah.mysimplify.adapter.OrderAdapter;
-import com.ainshafiqah.mysimplify.adapter.OrderAdapterSystem;
 import com.ainshafiqah.mysimplify.model.OrderData;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,8 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-public class OrderActivity extends AppCompatActivity {
-
+public class theorderActivity extends AppCompatActivity {
 
     BottomNavigationView bottommenu;
 
@@ -36,10 +34,9 @@ public class OrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_theorder);
 
         UserID = fAuth.getCurrentUser().getUid();
-        //mbase = FirebaseDatabase.getInstance().getReference("Order");
         Query query = FirebaseDatabase.getInstance().getReference("Order");
         imgOrder = findViewById(R.id.imgOrder);
 
@@ -53,13 +50,14 @@ public class OrderActivity extends AppCompatActivity {
             imgOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(OrderActivity.this, AddOrderActivity.class);
+                    Intent intent = new Intent(theorderActivity.this, AddOrderActivity.class);
                     startActivity(intent);
                 }
             });
         }catch (Exception e){
             e.printStackTrace();
         }
+
         bottommenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -86,7 +84,6 @@ public class OrderActivity extends AppCompatActivity {
 
         theorderadapter = new OrderAdapter(options);
         recyclerView.setAdapter(theorderadapter);
-
 
     }
 

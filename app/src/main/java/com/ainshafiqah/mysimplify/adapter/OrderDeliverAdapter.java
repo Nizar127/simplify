@@ -50,6 +50,7 @@ public class OrderDeliverAdapter extends FirebaseRecyclerAdapter<OrderData, Orde
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
+        holder.status.setText(model.getStatus());
         holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,7 +144,7 @@ public class OrderDeliverAdapter extends FirebaseRecyclerAdapter<OrderData, Orde
 
     class OrderDeliverViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, address, trackingNum;
+        TextView name, address, trackingNum, status;
         Button statusUpdateBtn;
 
         public OrderDeliverViewHolder(@NonNull View itemView) {
@@ -153,6 +154,7 @@ public class OrderDeliverAdapter extends FirebaseRecyclerAdapter<OrderData, Orde
             address         = itemView.findViewById(R.id.addressdeliverorder);
             trackingNum     = itemView.findViewById(R.id.trackingNumdeliveredorder);
             statusUpdateBtn = itemView.findViewById(R.id.statusBtnDeliver);
+            status          = itemView.findViewById(R.id.statusOrderDetailDeliver);
         }
     }
 }
