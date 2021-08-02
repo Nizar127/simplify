@@ -131,6 +131,7 @@ public class HomeActivity extends AppCompatActivity {
                     data1.setText(Integer.toString(orderData1));
                 }else{
                     Toast.makeText(HomeActivity.this, "The data does not exist", Toast.LENGTH_SHORT).show();
+                    data1.setText("0");
                 }
             }
 
@@ -150,6 +151,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }else{
                 Toast.makeText(HomeActivity.this, "The data does not exist", Toast.LENGTH_SHORT).show();
+                data2.setText("0");
              }
             }
 
@@ -168,6 +170,7 @@ public class HomeActivity extends AppCompatActivity {
                     data3.setText(Integer.toString(orderData3));
                 }else{
                     Toast.makeText(HomeActivity.this, "The data does not exist", Toast.LENGTH_SHORT).show();
+                    data3.setText("0");
                 }
 
             }

@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.ainshafiqah.mysimplify.adapter.CompletedOrderAdapter;
 import com.ainshafiqah.mysimplify.adapter.OrderDeliverAdapter;
@@ -23,6 +26,8 @@ public class CompletedOrderActivity extends AppCompatActivity {
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String userID;
     FirebaseDatabase fStart;
+    ImageView therealhome;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +36,15 @@ public class CompletedOrderActivity extends AppCompatActivity {
 
         userID = fAuth.getCurrentUser().getUid();
 
+        therealhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        mbase = FirebaseDatabase.getInstance().getReference("Order").child(userID);
+        mbase = FirebaseDatabase.getInstance().getReference("Order");
 
         Query query = mbase.orderByChild("order_status").equalTo("Complete");
         recyclerView = findViewById(R.id.recyclerviewCompleted);

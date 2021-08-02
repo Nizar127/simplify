@@ -64,7 +64,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 userMap.put("email",email);
                 userMap.put("name",name);
                 userMap.put("phoneNum",num);
-                dbRef.child(userID).setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                dbRef.child(userID).updateChildren(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){

@@ -69,7 +69,7 @@ public class OrderPackAdapter extends FirebaseRecyclerAdapter<OrderData, OrderPa
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",deliveredOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -90,7 +90,7 @@ public class OrderPackAdapter extends FirebaseRecyclerAdapter<OrderData, OrderPa
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",shipOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){

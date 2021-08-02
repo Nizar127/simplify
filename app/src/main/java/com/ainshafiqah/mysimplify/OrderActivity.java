@@ -40,7 +40,7 @@ public class OrderActivity extends AppCompatActivity {
 
         UserID = fAuth.getCurrentUser().getUid();
         //mbase = FirebaseDatabase.getInstance().getReference("Order");
-        Query query = FirebaseDatabase.getInstance().getReference("Order").child(UserID);
+        Query query = FirebaseDatabase.getInstance().getReference("Order");
         imgOrder = findViewById(R.id.imgOrder);
 
         recyclerView = findViewById(R.id.recyclerviewSystem);
