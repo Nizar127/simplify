@@ -16,6 +16,11 @@ import com.ainshafiqah.mysimplify.UpdateStatusActivity;
 import com.ainshafiqah.mysimplify.model.OrderData;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class StatusAdapter extends FirebaseRecyclerAdapter<OrderData, StatusAdapter.StatusViewHolder> {
     /**
@@ -33,18 +38,18 @@ public class StatusAdapter extends FirebaseRecyclerAdapter<OrderData, StatusAdap
         holder.statusTrackingNum.setText(model.getTrackingNum());
         holder.statusCustName.setText(model.getName());
         holder.statusAdress.setText(model.getAddress());
-        holder.statusDetail.setText(model.getStatus());
+        holder.statusDetail.setText(model.getOrder_status());
 
 
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+/*        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), UpdateStatusActivity.class);
                 intent.putExtra("orderID",model.getOrderID());
                 view.getContext().startActivity(intent);
             }
-        });
+        });*/
     }
 
 

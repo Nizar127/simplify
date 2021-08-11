@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,9 +18,14 @@ import com.ainshafiqah.mysimplify.model.OrderData;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -40,7 +46,9 @@ public class OrderActivity extends AppCompatActivity {
 
         UserID = fAuth.getCurrentUser().getUid();
         //mbase = FirebaseDatabase.getInstance().getReference("Order");
+        //Query query = FirebaseDatabase.getInstance().getReference("Order").child("orderID").equalTo(UserID);
         Query query = FirebaseDatabase.getInstance().getReference("Order");
+        Log.d(TAG, "Query: "+query.toString());
         imgOrder = findViewById(R.id.imgOrder);
 
         recyclerView = findViewById(R.id.recyclerviewSystem);

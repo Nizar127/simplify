@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,17 +25,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.content.ContentValues.TAG;
+
 public class HomeActivity extends AppCompatActivity {
 
     LinearLayout orderPack, orderShip, orderDeliver, orderCompleted;
     Button btnOrderStatus;
     TextView data1, data2, data3;
-    DatabaseReference dbRef;
+    DatabaseReference dbRef, ordernow;
     BottomNavigationView bottommenu;
+    String getID = "";
+    Object IDNow;
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String UserID = fAuth.getCurrentUser().getUid();
-    int orderData1, orderData2,orderData3;
-    Query thedata1,thedata2,thedata3;
+    int orderData1 =0;
+    int orderData2 = 0;
+    int orderData3 = 0;
+    Query thedata1,thedata2,thedata3, mydata1;
     ImageView imgData;
 
     @Override
@@ -56,8 +65,8 @@ public class HomeActivity extends AppCompatActivity {
         imgData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, theorderActivity.class);
-                startActivity(intent);
+               
+               gotoURL("https://docs.google.com/forms/d/1Lgw-63h9oLutjdeQBcsOaSnOx6g-0NyAbcivqNXcRuM/edit");
             }
         });
 
@@ -121,13 +130,21 @@ public class HomeActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        //UserID = theuser;
         dbRef = FirebaseDatabase.getInstance().getReference("Order");
-        thedata1 = dbRef.child(UserID).orderByChild("order_status").equalTo("Packing");
-        thedata1.addValueEventListener(new ValueEventListener() {
+
+        Log.d(TAG, "dbref: "+dbRef);
+        thedata1 =  dbRef.child("orderID").equalTo(UserID);
+        Query shippingData = dbRef.orderByChild("order_status").equalTo("shipping");
+        //mydata1 = thedata1.child("order_status").equalTo("shipping");
+        Log.d(TAG, "thedatanew: "+thedata1);
+        shippingData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     orderData1 = (int) snapshot.getChildrenCount();
+                    Log.d(TAG, "orderData1: "+orderData1);
                     data1.setText(Integer.toString(orderData1));
                 }else{
                     Toast.makeText(HomeActivity.this, "The data does not exist", Toast.LENGTH_SHORT).show();
@@ -141,12 +158,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        thedata2 = dbRef.child(UserID).orderByChild("order_status").equalTo("Shipping");
-        thedata2.addValueEventListener(new ValueEventListener() {
+        //thedata2 = dbRef.child(UserID).orderByChild("order_status").equalTo("Packing");
+        thedata2 = dbRef.child("orderID").equalTo(UserID);
+        Log.d(TAG, "onCreate: "+thedata2);
+        Query packingData = dbRef.orderByChild("order_status").equalTo("Packing");
+        packingData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     orderData2 = (int) snapshot.getChildrenCount();
+                    Log.d(TAG, "OrderData2: "+orderData2);
                     data2.setText(Integer.toString(orderData2));
 
             }else{
@@ -161,8 +182,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        thedata3 = dbRef.child(UserID).orderByChild("order_status").equalTo("Delivered");
-        thedata3.addValueEventListener(new ValueEventListener() {
+        //thedata3 = dbRef.child(UserID).orderByChild("order_status").equalTo("Delivered");
+        thedata3 = dbRef.child("orderID").equalTo(UserID);
+        Query DeliveredData = dbRef.orderByChild("order_status").equalTo("Delivered");
+        DeliveredData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -195,5 +218,12 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });*/
+    }
+
+    private void gotoURL(String s) {
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        Toast.makeText(HomeActivity.this, "Please Click Back Here", Toast.LENGTH_SHORT).show();
+
     }
 }

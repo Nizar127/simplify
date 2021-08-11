@@ -50,7 +50,7 @@ public class OrderDeliverAdapter extends FirebaseRecyclerAdapter<OrderData, Orde
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
-        holder.status.setText(model.getStatus());
+        holder.status.setText(model.getOrder_status());
         holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,8 +73,8 @@ public class OrderDeliverAdapter extends FirebaseRecyclerAdapter<OrderData, Orde
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",completed);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
+                       dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                          @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Intent intent = new Intent(v.getContext(), CompletedOrderActivity.class);

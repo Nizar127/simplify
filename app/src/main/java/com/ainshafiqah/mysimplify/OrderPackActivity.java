@@ -35,6 +35,7 @@ public class OrderPackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_pack);
         userID = fAuth.getCurrentUser().getUid();
+        therealhome = findViewById(R.id.thehome);
 
         therealhome.setOnClickListener(new View.OnClickListener() {
             @Override

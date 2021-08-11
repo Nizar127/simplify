@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ainshafiqah.mysimplify.adapter.StatusAdapter;
@@ -23,12 +24,21 @@ public class StatusActivity extends AppCompatActivity {
     StatusAdapter mStatusAdapter;
     DatabaseReference mbase;
     Button trackNumberID;
+    ImageView backbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
+        backbtn = findViewById(R.id.backhomebtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StatusActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
         mbase = FirebaseDatabase.getInstance().getReference("Order");
         trackNumberID = findViewById(R.id.trackID);
 
