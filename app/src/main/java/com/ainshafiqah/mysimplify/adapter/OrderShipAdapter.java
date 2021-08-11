@@ -45,7 +45,7 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
-        holder.status.setText(model.getStatus());
+        holder.status.setText(model.getOrder_status());
         holder.statusUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

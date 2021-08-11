@@ -8,9 +8,9 @@ public class OrderData {
     String orderDate;
     String shipmentDate;
     String trackingNum;
-    String status;
+    String order_status;
 
-    public OrderData(String orderID, String name, String phone, String address, String orderDate, String shipmentDate, String trackingNum, String status) {
+    public OrderData(String orderID, String name, String phone, String address, String orderDate, String shipmentDate, String trackingNum, String order_status) {
         this.orderID = orderID;
         this.name = name;
         this.phone = phone;
@@ -18,11 +18,10 @@ public class OrderData {
         this.orderDate = orderDate;
         this.shipmentDate = shipmentDate;
         this.trackingNum = trackingNum;
-        this.status = status;
+        this.order_status = order_status;
     }
-    public OrderData(){
 
-    }
+    public OrderData(){}
 
     public String getOrderID() {
         return orderID;
@@ -80,11 +79,11 @@ public class OrderData {
         this.trackingNum = trackingNum;
     }
 
-    public String getStatus() {
-        return status;
+    public String getOrder_status() {
+        return order_status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
     }
 }

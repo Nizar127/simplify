@@ -29,7 +29,7 @@ public class CompletedOrderAdapter extends FirebaseRecyclerAdapter<OrderData, Co
         holder.name.setText(model.getName());
         holder.address.setText(model.getAddress());
         holder.trackingNum.setText(model.getTrackingNum());
-        holder.status.setText(model.getStatus());
+        holder.status.setText(model.getOrder_status());
     }
 
     @NonNull

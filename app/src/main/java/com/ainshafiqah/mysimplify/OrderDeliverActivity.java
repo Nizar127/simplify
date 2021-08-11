@@ -36,6 +36,7 @@ public class OrderDeliverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_deliver);
         userID = fAuth.getCurrentUser().getUid();
+        therealhome = findViewById(R.id.thehome);
 
         therealhome.setOnClickListener(new View.OnClickListener() {
             @Override
