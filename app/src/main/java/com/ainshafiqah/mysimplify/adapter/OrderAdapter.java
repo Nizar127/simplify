@@ -59,22 +59,29 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
 
                 LinearLayout shipping     = bottomSheetDialog.findViewById(R.id.shippingItemDialog);
                 LinearLayout packing      = bottomSheetDialog.findViewById(R.id.packingItemDialog);
+                LinearLayout completed    = bottomSheetDialog.findViewById(R.id.completeItemDialog);
                 LinearLayout delivering   = bottomSheetDialog.findViewById(R.id.deliverItemDialog);
                 LinearLayout completed    = bottomSheetDialog.findViewById(R.id.completeItemDialog);
                 LinearLayout closeDialog  = bottomSheetDialog.findViewById(R.id.closeDialog);
                 LinearLayout deleteDialog = bottomSheetDialog.findViewById(R.id.deleteItemDialog);
+
 
                 completed.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String key = getRef(position).getKey();
                         Log.d(TAG, "completedKey: "+key);
+
                         Object completed = "Complete";
                         HashMap<String, Object> orderMap = new HashMap<>();
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",completed);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
+
                         dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                       
+
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -95,7 +102,7 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",shipOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {      
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()){
@@ -116,7 +123,7 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",packOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
-                        dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        dbref.child(key).child("status").updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
@@ -137,8 +144,11 @@ public class OrderAdapter extends FirebaseRecyclerAdapter<OrderData, OrderAdapte
                         HashMap<String, Object> orderMap = new HashMap<>();
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",deliveredOut);
+
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
                         dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){

@@ -68,7 +68,11 @@ public class OrderShipAdapter extends FirebaseRecyclerAdapter<OrderData, OrderSh
                         //orderMap.put("orderID",userID);
                         orderMap.put("order_status",deliveredOut);
                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Order");
+
                         dbref.child(key).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                        
+
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
